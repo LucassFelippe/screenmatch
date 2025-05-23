@@ -1,5 +1,6 @@
 package br.com.screenmatch.modelos;
 
+import br.com.alura.exception.ErroDeConversaoException;
 import com.google.gson.annotations.SerializedName;
 
 public class Titulo implements Comparable<Titulo>{
@@ -19,7 +20,11 @@ public class Titulo implements Comparable<Titulo>{
 
     public Titulo(TituloOmdb meuTituloOmdb) {
         this.name = meuTituloOmdb.title();
-        this.anoDeLancamento = meuTituloOmdb.year();
+
+        if(meuTituloOmdb.year() > 4){
+            throw  new ErroDeConversaoException("Não consegui converter o ano de lançamento porque é maior que 4");
+        }
+            this.anoDeLancamento = Integer.valueOf(meuTituloOmdb.year());
         this.duracaoEmMinutos = Integer.valueOf(meuTituloOmdb.runtime().substring(0,3));
     }
 
