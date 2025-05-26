@@ -21,11 +21,11 @@ public class Titulo implements Comparable<Titulo>{
     public Titulo(TituloOmdb meuTituloOmdb) {
         this.name = meuTituloOmdb.title();
 
-        if(meuTituloOmdb.year() > 4){
-            throw  new ErroDeConversaoException("Não consegui converter o ano de lançamento porque é maior que 4");
+        if (String.valueOf(meuTituloOmdb.year()).length() > 4) {
+            throw new ErroDeConversaoException("Não consegui converter o ano de lançamento porque é maior que 4");
         }
             this.anoDeLancamento = Integer.valueOf(meuTituloOmdb.year());
-        this.duracaoEmMinutos = Integer.valueOf(meuTituloOmdb.runtime().substring(0,3));
+            this.duracaoEmMinutos = Integer.valueOf(meuTituloOmdb.runtime().substring(0,2));
     }
 
     public int getTotalDeAvaliacoes(){
